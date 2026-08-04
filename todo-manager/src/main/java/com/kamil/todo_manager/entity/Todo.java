@@ -43,12 +43,12 @@ public class Todo {
         this.status = status;
     }
 
-    public Todo(int id, String title, String content, String status) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.status = status;
-    }
+  //  public Todo(int id, String title, String content, String status) {
+     //   this.id = id;
+      //  this.title = title;
+      //  this.content = content;
+       // this.status = status;
+   // }
 
     @Override
     public String toString() {
