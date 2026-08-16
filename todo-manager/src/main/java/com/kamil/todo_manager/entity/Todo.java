@@ -1,5 +1,9 @@
 package com.kamil.todo_manager.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Date;
+
 public class Todo {
 
 
@@ -8,6 +12,10 @@ public class Todo {
     private String content;
     private String status;
 
+
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private Date todoDate;
     public Integer getId() {
         return id;
     }
@@ -49,7 +57,13 @@ public class Todo {
       //  this.content = content;
        // this.status = status;
    // }
+  public Date getTodoDate() {
+      return todoDate;
+  }
 
+    public void setTodoDate(Date todoDate) {
+        this.todoDate = todoDate;
+    }
     @Override
     public String toString() {
         return "Todo{" +
@@ -57,6 +71,7 @@ public class Todo {
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", status='" + status + '\'' +
+                ", todoDate=" + todoDate +
                 '}';
     }
 }
