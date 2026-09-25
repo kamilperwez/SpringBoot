@@ -7,8 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
+import java.util.List;
+
+@Repository
 public class TodoDao {
     @Autowired
     private JdbcTemplate template;
@@ -31,6 +34,11 @@ public class TodoDao {
         String query="insert into todos values (?,?,?,?)";
         int n= template.update(query,todo.getId(),todo.getTitle(),todo.getContent(),todo.getStatus());
         logger.info("Row Inserted");
+    }
+    public List<Todo> getAll(){
+        String query="select * from todos";
+        List<Todo> todos=template.query(query,new TodoRowMapper());
+        return todos;
     }
 
 }

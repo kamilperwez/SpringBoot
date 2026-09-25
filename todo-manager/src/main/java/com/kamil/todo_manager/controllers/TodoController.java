@@ -1,7 +1,7 @@
 package com.kamil.todo_manager.controllers;
 
 import com.kamil.todo_manager.entity.Todo;
-import com.kamil.todo_manager.services.TodoService;
+import com.kamil.todo_manager.services.TodoServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class TodoController {
     Random random=new Random();
     Logger logger= LoggerFactory.getLogger(TodoController.class);
     @Autowired
-    private TodoService todoService;
+    private TodoServices todoService;
     @PostMapping
     public ResponseEntity<Todo> createTodoHandler(@RequestBody Todo todo){
         int id= random.nextInt(999999);
@@ -27,16 +27,17 @@ public class TodoController {
         Date date=new Date();
         logger.info("Todo created");
         logger.info(" Todo Date {} ",date);
-        Todo todo1=todoService.createTodo(todo);
+        todoService.save(todo);
         logger.info(" Todo Date created {} ",todo.getTodoDate());
-        return new ResponseEntity<>(todo1, HttpStatus.CREATED);
+        return new ResponseEntity<>(todo, HttpStatus.CREATED);
 
     }
     @GetMapping
     public  ResponseEntity<List<Todo>> getAllTodos(){
-        List<Todo> todos=todoService.getAllTodos();
+        List<Todo> todos=todoService.getAll();
         return new ResponseEntity<>(todos,HttpStatus.OK);
     }
+    /*
     @GetMapping("/{id}")
     public ResponseEntity<Todo> getTodoById(@PathVariable("id") int id){
         Todo todo1=todoService.getTodoById(id);
@@ -52,5 +53,5 @@ public class TodoController {
         Todo todo1=todoService.deleteTodo(id);
         logger.info("Todo deleted {} ",todo1);
         return new ResponseEntity<>(todo1,HttpStatus.OK);
-    }
+    }*/
 }

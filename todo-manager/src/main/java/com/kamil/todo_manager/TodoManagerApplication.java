@@ -18,11 +18,6 @@ public class TodoManagerApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Todo todo=new Todo();
-		todo.setId(122);
-		todo.setTitle("Programmer");
-		todo.setContent("Learning SpringBoot");
-		todo.setStatus("In Progress");
-		todoDao.save(todo);
+
 	}
 }
